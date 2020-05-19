@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: traefik
+  labels:
+    name: traefik
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: sarafu-staging
+  labels:
+    name: sarafu-staging
