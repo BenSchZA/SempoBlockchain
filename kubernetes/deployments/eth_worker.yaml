@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eth_worker_high_priority
+  labels:
+    app: eth_worker_high_priority
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eth_worker_high_priority
+
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: eth_worker_high_priority
+    spec:
+      containers:
+        - name: eth_worker
+          image: eth_worker
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 512Mi
+            requests:
+              cpu: "0.25"
+              memory: 256Mi
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: eth_worker_high_priority
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eth_worker_low_priority
+  labels:
+    app: eth_worker_low_priority
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eth_worker_low_priority
+
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: eth_worker_low_priority
+    spec:
+      containers:
+        - name: eth_worker
+          image: eth_worker
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 512Mi
+            requests:
+              cpu: "0.25"
+              memory: 128Mi
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: eth_worker_low_priority
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eth_worker_processor
+  labels:
+    app: eth_worker_processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eth_worker_processor
+
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: eth_worker_processor
+    spec:
+      containers:
+        - name: eth_worker
+          image: eth_worker
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 512Mi
+            requests:
+              cpu: "0.25"
+              memory: 128Mi
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: eth_worker_processor
+          ports:
+            - containerPort: 80
