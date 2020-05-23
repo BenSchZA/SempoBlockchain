@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: proxy
+  name: app
   labels:
-    app: proxy
+    app: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: proxy
+      app: app
 
   # Pod template
   template:
     metadata:
       labels:
-        app: proxy
+        app: app
     spec:
+      imagePullSecrets:
+        - name: aws-ecr
       containers:
-        - name: proxy
-          image: proxy
+        - name: app
+          image: 847108109661.dkr.ecr.eu-central-1.amazonaws.com/cic-platform:server_83ebbe85d92ff405ec85e0ad2f10d5716615fe83
           resources:
             limits:
               cpu: "1"

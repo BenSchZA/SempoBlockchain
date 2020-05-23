@@ -1,0 +1,3 @@
+[submodule "kubernetes/csi-packet"]
+	path = kubernetes/csi-packet
+	url = git@github.com:packethost/csi-packet.git

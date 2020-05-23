@@ -128,7 +128,7 @@ spec:
         name: postgres
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: "standard"
+        storageClassName: csi-packet-standard
         resources:
           requests:
-            storage: 1Gi
+            storage: 100Gi
