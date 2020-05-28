@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eth_worker_high_priority
+  name: eth-worker-high-priority
   labels:
-    app: eth_worker_high_priority
+    app: eth-worker-high-priority
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eth_worker_high_priority
+      app: eth-worker-high-priority
 
   # Pod template
   template:
     metadata:
       labels:
-        app: eth_worker_high_priority
+        app: eth-worker-high-priority
     spec:
       containers:
-        - name: eth_worker
-          image: eth_worker
+        - name: eth-worker
+          image: grassrootseconomics/eth_worker:4fb0e54
           resources:
             limits:
               cpu: "0.5"
@@ -29,31 +29,33 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: eth_worker_high_priority
+                name: eth-worker-high-priority
+            - secretRef:
+                name: aws
           ports:
             - containerPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eth_worker_low_priority
+  name: eth-worker-low-priority
   labels:
-    app: eth_worker_low_priority
+    app: eth-worker-low-priority
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eth_worker_low_priority
+      app: eth-worker-low-priority
 
   # Pod template
   template:
     metadata:
       labels:
-        app: eth_worker_low_priority
+        app: eth-worker-low-priority
     spec:
       containers:
-        - name: eth_worker
-          image: eth_worker
+        - name: eth-worker
+          image: grassrootseconomics/eth_worker:4fb0e54
           resources:
             limits:
               cpu: "0.5"
@@ -64,31 +66,33 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: eth_worker_low_priority
+                name: eth-worker-low-priority
+            - secretRef:
+                name: aws
           ports:
             - containerPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eth_worker_processor
+  name: eth-worker-processor
   labels:
-    app: eth_worker_processor
+    app: eth-worker-processor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eth_worker_processor
+      app: eth-worker-processor
 
   # Pod template
   template:
     metadata:
       labels:
-        app: eth_worker_processor
+        app: eth-worker-processor
     spec:
       containers:
-        - name: eth_worker
-          image: eth_worker
+        - name: eth-worker
+          image: grassrootseconomics/eth_worker:4fb0e54
           resources:
             limits:
               cpu: "0.5"
@@ -99,6 +103,8 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: eth_worker_processor
+                name: eth-worker-processor
+            - secretRef:
+                name: aws
           ports:
             - containerPort: 80
