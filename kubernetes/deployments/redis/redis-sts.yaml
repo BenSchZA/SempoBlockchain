@@ -86,7 +86,7 @@ data:
     # IF YOU ARE SURE YOU WANT YOUR INSTANCE TO LISTEN TO ALL THE INTERFACES
     # JUST COMMENT THE FOLLOWING LINE.
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    bind 127.0.0.1
+    # bind 127.0.0.1
 
     # Protected mode is a layer of security protection, in order to avoid that
     # Redis instances left open on the internet are accessed and exploited.
@@ -105,11 +105,11 @@ data:
     # you are sure you want clients from other hosts to connect to Redis
     # even if no authentication is configured, nor a specific set of interfaces
     # are explicitly listed using the "bind" directive.
-    protected-mode yes
+    # protected-mode yes
 
     # Accept connections on the specified port, default is 6379 (IANA #815344).
     # If port 0 is specified Redis will not listen on a TCP socket.
-    port 6379
+    # port 6379
 
     # TCP listen() backlog.
     #
@@ -1334,7 +1334,6 @@ data:
 
     # Maximal effort for defrag in CPU percentage
     # active-defrag-cycle-max 75
-
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -1359,7 +1358,7 @@ spec:
               name: client
             - containerPort: 16379
               name: gossip
-          command: ["redis-server", "/conf/redis.conf"] #"/conf/update-node.sh",
+          command: ["/conf/update-node.sh", "redis-server", "/conf/redis.conf"]
           env:
             - name: POD_IP
               valueFrom:
@@ -1382,6 +1381,8 @@ spec:
         name: data
       spec:
         accessModes: ["ReadWriteOnce"]
+        storageClassName: local-path
+        # persistentVolumeReclaimPolicy: Recycle
         resources:
           requests:
             storage: 1Gi

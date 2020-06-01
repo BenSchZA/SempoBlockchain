@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: pgbouncer
-          image: grassrootseconomics/pgbouncer:4fb0e54
+          image: grassrootseconomics/pgbouncer:02fb5dd
           resources:
             limits:
               cpu: "1"
