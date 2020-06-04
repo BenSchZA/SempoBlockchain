@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer
+data:
+  DEPLOYMENT_NAME: "production"
+  SERVER_HAS_S3_AUTH: "true"
