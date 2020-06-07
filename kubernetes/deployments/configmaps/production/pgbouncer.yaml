@@ -5,3 +5,4 @@ metadata:
 data:
   DEPLOYMENT_NAME: "production"
   SERVER_HAS_S3_AUTH: "true"
+  SECRETS_BUCKET: "sarafu-secrets-k8s"

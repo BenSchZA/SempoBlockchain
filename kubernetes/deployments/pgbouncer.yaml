@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pgbouncer
   labels:
-    app: pgbouncer
+    run: pgbouncer
 spec:
   revisionHistoryLimit: 10 # removes old replicasets for deployment rollbacks
   strategy:
@@ -12,13 +12,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pgbouncer
+      run: pgbouncer
 
   # Pod template
   template:
     metadata:
       labels:
-        app: pgbouncer
+        run: pgbouncer
     spec:
       containers:
         - name: pgbouncer
