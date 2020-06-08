@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: app
 data:
-  DEPLOYMENT_NAME: "production"
+  DEPLOYMENT_NAME: "sarafu"
   CONTAINER_TYPE: "APP"
   SERVER_HAS_S3_AUTH: "true"
   PYTHONUNBUFFERED: "0"

@@ -22,7 +22,6 @@ metadata:
   namespace: sarafu-production
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/preserve-host: "true"
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-production
@@ -32,7 +31,7 @@ metadata:
       aws-app: 0%
 spec:
   rules:
-    - host: canary.sarafu.network
+    - host: admin.sarafu.network
       http:
         paths:
           - backend:
@@ -43,5 +42,5 @@ spec:
               servicePort: http
   tls:
     - hosts:
-        - canary.sarafu.network
-      secretName: canary.sarafu.network
+        - admin.sarafu.network
+      secretName: admin.sarafu.network
