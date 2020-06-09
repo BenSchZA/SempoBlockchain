@@ -37,7 +37,6 @@ from server.models.organisation import Organisation
 from server.models.blacklist_token import BlacklistToken
 from server.models.transfer_card import TransferCard
 from server.models.transfer_usage import TransferUsage
-from server.models.user_extension import UserExtension
 
 from server.exceptions import (
     RoleNotFoundException,
@@ -75,6 +74,9 @@ class User(ManyOrgBase, ModelBase, SoftDelete):
         created using the POST user API or the bulk upload function
     """
     __tablename__ = 'user'
+    __mapper_args__ = {
+        'polymorphic_identity':'user',
+            }
 
     first_name = db.Column(db.String())
     last_name = db.Column(db.String())
