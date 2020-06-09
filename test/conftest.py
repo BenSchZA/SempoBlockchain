@@ -163,6 +163,7 @@ def new_credit_transfer(create_transfer_account_user, external_reserve_token):
     )
     return credit_transfer
 
+
 @pytest.fixture(scope='function')
 def new_locations(test_client, init_database):
     from server.models.location import Location
